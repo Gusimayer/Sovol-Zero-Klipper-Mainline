@@ -23,9 +23,8 @@
 - Separar migración OEM→Mainline de actualización Mainline→Mainline.
 
 ## Pendientes
-1. Investigar origen del offset G-code Z `-0.102362` antes de tocar offsets o generar malla.
-2. Recuperar el chat/log de la primera programación SWD del F103 para completar los comandos exactos.
-3. Revisar el script Asnajder en el commit exacto si se desea actualizar el análisis.
-4. Diagnosticar MCU cámara.
+1. Recuperar el chat/log de la primera programación SWD del F103 para completar los comandos exactos.
+2. Revisar el script Asnajder en el commit exacto si se desea actualizar el análisis.
+
 
 Cada nueva prueba debería registrar fecha, revisión de placa, commits, configuración, comando, salida, hash SHA256 y resultado.
