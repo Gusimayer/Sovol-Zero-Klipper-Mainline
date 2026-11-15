@@ -44,7 +44,7 @@ OpenOCD detectó el adaptador y el chip. En una de las lecturas se observó:
 Se creó el directorio:
 
 ```bash
-mkdir -p ~/firmware_lexfrei/backup
+mkdir -p ~/firmware_OEM/backup
 ```
 
 El comando que realizó la lectura completa de los 128 KiB fue:
@@ -58,7 +58,7 @@ sudo openocd \
   -f target/stm32f1x.cfg \
   -c "init" \
   -c "reset halt" \
-  -c "dump_image /home/sovol/firmware_lexfrei/backup/toolhead-original-128k.bin 0x08000000 0x20000" \
+  -c "dump_image /home/sovol/firmware_OEM/backup/toolhead-original-128k.bin 0x08000000 0x20000" \
   -c "shutdown"
 ```
 
@@ -67,9 +67,9 @@ Resultado observado: `dumped 131072 bytes`.
 Verificación del archivo:
 
 ```bash
-ls -lh ~/firmware_lexfrei/backup/toolhead-original-128k.bin
-stat -c 'Tamaño exacto: %s bytes' ~/firmware_lexfrei/backup/toolhead-original-128k.bin
-sha256sum ~/firmware_lexfrei/backup/toolhead-original-128k.bin
+ls -lh ~/firmware_OEM/backup/toolhead-original-128k.bin
+stat -c 'Tamaño exacto: %s bytes' ~/firmware_OEM/backup/toolhead-original-128k.bin
+sha256sum ~/firmware_OEM/backup/toolhead-original-128k.bin
 ```
 
 Datos registrados:
@@ -84,7 +84,7 @@ Conservar este archivo sin modificar. Es el volcado de la flash original del F10
 
 La carpeta de trabajo registrada fue:
 
-`/home/sovol/firmware_lexfrei/binaries/`
+`/home/sovol/firmware_OEM/binaries/`
 
 | Imagen | Nombre | SHA256 |
 |---|---|---|
@@ -93,7 +93,7 @@ La carpeta de trabajo registrada fue:
 
 Configuración de referencia de Klipper F103 conservada en:
 
-`~/firmware_lexfrei/configs/klipper-f103-original.config`
+`~/firmware_OEM/configs/klipper-f103-original.config`
 
 SHA256 del archivo de configuración:
 
