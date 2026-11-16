@@ -10,7 +10,6 @@
 | MCU cabezal | STM32F103 | Extrusor, hotend, Eddy LDC1612 y acelerómetro |
 | MCU cámara | Auxiliar no detectado durante el trabajo | No incluir hasta diagnosticar |
 
-No hay Raspberry Pi separada ni cable USB interno independiente: H616 y MCU principal se comunican mediante pistas USB de la placa.
 
 ## USB-CAN
 Con Klipper activo, el MCU principal aparece como USB `1d50:606f`; Linux expone `can0` con `gs_usb`. Al solicitar Katapult se reenumera como `1d50:6177`, aparece un puerto serie (en la sesión, `/dev/ttyACM0`) y `can0` desaparece temporalmente. Tras programar y arrancar Klipper, vuelve el USB-CAN.
