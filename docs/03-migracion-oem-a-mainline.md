@@ -209,6 +209,8 @@ Entre los archivos guardados se encuentran:
 - Directorio `sounds/`
 
 También se conservaron los archivos auxiliares y las copias anteriores de Moonraker.
+* Se utiliza una pantalla BTT HDMI5 que reproduce audio, por eso de la macro_audio y directorio sound.
+* Se utiliza tiras led por eso del rgb.cg
 
 ### Respaldo del firmware original
 
