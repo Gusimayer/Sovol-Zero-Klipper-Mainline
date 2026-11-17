@@ -827,7 +827,7 @@ La migración OEM → Klipper Mainline ha permitido sustituir los componentes pr
 | Eddy LDC1612 | Operativo |
 | Eddy TAP | Calibrado |
 | Eddy SCAN | Probado |
-| MCU cámara | Pendiente de diagnóstico |
+| MCU cámara | N/A |
 
 La impresora funciona con Klipper Mainline y los dos microcontroladores principales están actualizados.
 
