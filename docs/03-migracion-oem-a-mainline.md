@@ -382,7 +382,68 @@ La configuración de servicio utiliza el entorno Python de `~/klippy-env`.
 
 ---
 
-## 3.5. Migración del microcontrolador principal H750
+## 3.5. Migración del microcontrolador del cabezal STM32F103
+
+El segundo microcontrolador que debe funcionar con Mainline es el STM32F103 del cabezal.
+
+Su firmware original contiene modificaciones específicas de Sovol, especialmente relacionadas con el sensor Eddy y la comunicación con el sistema de control.
+
+No es suficiente con sustituir únicamente el firmware del host: ambos microcontroladores deben utilizar un protocolo compatible.
+
+### Características de compilación
+
+| Parámetro | Valor |
+|---|---|
+| Arquitectura | STM32 |
+| MCU | STM32F103 |
+| Variante | `stm32f103xe` |
+| Frecuencia | 72 MHz |
+| Dirección de aplicación | `0x08002000` |
+| Interfaz de comunicación | CAN |
+| Pines CAN | PB8 / PB9 |
+| Referencia de reloj | 8 MHz |
+| Bootloader | Katapult |
+
+La dirección `0x08002000` reserva los primeros 8 KiB para Katapult.
+
+### Acceso SWD
+
+Durante los trabajos de identificación y respaldo del cabezal se utilizó acceso SWD.
+
+La conexión de referencia del programador ST-Link V2 es:
+
+| ST-Link | Placa |
+|---|---|
+| 3.3 V | Alimentación de referencia |
+| SWDIO | SWDIO |
+| SWCLK | SWCLK |
+| GND | GND |
+
+La identificación del dispositivo se realizó mediante OpenOCD.
+
+Se observó el identificador:
+
+`0x1BA01477`
+
+El dispositivo corresponde a la familia STM32F1.
+
+El respaldo de flash del F103 se conserva antes de realizar modificaciones.
+
+**Nota de trazabilidad:** no se debe presentar una secuencia de escritura SWD completa como procedimiento probado si no se dispone del registro de la operación original. La instalación final de Katapult y Klipper Mainline en el F103 sí quedó completada y el microcontrolador respondió correctamente por CAN.
+
+### Comunicación CAN
+
+Después de instalar el firmware Mainline, el F103 apareció en el bus con un UUID nuevo:
+
+`e592fd710122`
+
+Este UUID fue identificado físicamente desconectando y reconectando el cable CAN del cabezal.
+
+La comunicación con el F103 quedó operativa a través del puente USB-CAN del H750.
+
+---
+
+## 3.6. Migración del microcontrolador principal H750
 
 El primer elemento crítico fue el microcontrolador de la placa principal.
 
@@ -465,67 +526,6 @@ Se comprobó:
 - Estado CAN `ERROR-ACTIVE`.
 
 El estado `ERROR-ACTIVE` indica que el controlador CAN está funcionando normalmente; no significa por sí mismo que exista un error.
-
----
-
-## 3.6. Migración del microcontrolador del cabezal STM32F103
-
-El segundo microcontrolador que debe funcionar con Mainline es el STM32F103 del cabezal.
-
-Su firmware original contiene modificaciones específicas de Sovol, especialmente relacionadas con el sensor Eddy y la comunicación con el sistema de control.
-
-No es suficiente con sustituir únicamente el firmware del host: ambos microcontroladores deben utilizar un protocolo compatible.
-
-### Características de compilación
-
-| Parámetro | Valor |
-|---|---|
-| Arquitectura | STM32 |
-| MCU | STM32F103 |
-| Variante | `stm32f103xe` |
-| Frecuencia | 72 MHz |
-| Dirección de aplicación | `0x08002000` |
-| Interfaz de comunicación | CAN |
-| Pines CAN | PB8 / PB9 |
-| Referencia de reloj | 8 MHz |
-| Bootloader | Katapult |
-
-La dirección `0x08002000` reserva los primeros 8 KiB para Katapult.
-
-### Acceso SWD
-
-Durante los trabajos de identificación y respaldo del cabezal se utilizó acceso SWD.
-
-La conexión de referencia del programador ST-Link V2 es:
-
-| ST-Link | Placa |
-|---|---|
-| 3.3 V | Alimentación de referencia |
-| SWDIO | SWDIO |
-| SWCLK | SWCLK |
-| GND | GND |
-
-La identificación del dispositivo se realizó mediante OpenOCD.
-
-Se observó el identificador:
-
-`0x1BA01477`
-
-El dispositivo corresponde a la familia STM32F1.
-
-El respaldo de flash del F103 se conserva antes de realizar modificaciones.
-
-**Nota de trazabilidad:** no se debe presentar una secuencia de escritura SWD completa como procedimiento probado si no se dispone del registro de la operación original. La instalación final de Katapult y Klipper Mainline en el F103 sí quedó completada y el microcontrolador respondió correctamente por CAN.
-
-### Comunicación CAN
-
-Después de instalar el firmware Mainline, el F103 apareció en el bus con un UUID nuevo:
-
-`e592fd710122`
-
-Este UUID fue identificado físicamente desconectando y reconectando el cable CAN del cabezal.
-
-La comunicación con el F103 quedó operativa a través del puente USB-CAN del H750.
 
 ---
 
