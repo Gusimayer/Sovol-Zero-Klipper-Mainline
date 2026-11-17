@@ -78,13 +78,12 @@ La placa de control lleva la referencia serigrafiada:
 
 `H616_JC_3Z_5160_V1.2`
 
-No se trata de una arquitectura convencional con una Raspberry Pi externa y una placa de control independiente. El ordenador Linux y el microcontrolador principal están integrados en la misma placa.
 
 ### Host Linux
 
 - SoC: Allwinner H616.
 - Arquitectura: ARM64.
-- Sistema operativo utilizado: Armbian Trixie / Debian 13.
+- Sistema operativo utilizado: Armbian Trixie / Debian 13. (https://armbian.com/es/boards/sovol-zero)
 - Usuario del sistema: `sovol`.
 - Directorio principal: `/home/sovol`.
 - Klipper: `~/klipper`.
