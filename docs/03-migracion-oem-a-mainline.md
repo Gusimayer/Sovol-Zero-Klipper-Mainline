@@ -248,9 +248,70 @@ Los respaldos originales no deben sobrescribirse durante las operaciones posteri
 
 ---
 
-## 3.4. Preparación del entorno Mainline
+## 3.4. Preparación del almacenamiento y del entorno Mainline
 
-El sistema Linux se mantuvo operativo. No fue necesario sustituir Armbian ni reinstalar todos los servicios de la impresora.
+Antes de comenzar la instalación de Klipper Mainline se realizó una modificación importante en el almacenamiento interno de la Sovol Zero: la sustitución del módulo eMMC original de 8 GB por uno de 32 GB.
+
+Esta modificación permitió disponer de mayor capacidad para el sistema operativo, los repositorios de desarrollo, los entornos Python, los registros y los archivos auxiliares necesarios durante la migración.
+
+### Sustitución del eMMC original
+
+La Sovol Zero incorpora originalmente un módulo eMMC Samsung de 8 GB.
+
+Se decidió sustituirlo por un módulo de mayor capacidad, conservando el original como respaldo físico.
+
+| Característica | eMMC original | eMMC instalado |
+|---|---|---|
+| Fabricante / modelo | Samsung KLM8G1GET | YXSC YXSBG6PX-AE |
+| Capacidad nominal | 8 GB | 32 GB |
+| Función | Almacenamiento original | Almacenamiento del sistema |
+| Estado posterior | Conservado intacto | Instalado y operativo |
+
+El módulo de 32 GB se preparó previamente con Armbian y posteriormente se instaló en la placa de la Sovol Zero.
+
+Una vez instalado, la impresora arrancó correctamente desde el nuevo almacenamiento.
+
+El módulo original Samsung de 8 GB se retiró y se conservó intacto, sin utilizarlo para las operaciones posteriores de migración.
+
+### Sistema operativo
+
+El nuevo almacenamiento permitió trabajar con una instalación de Armbian basada en Debian Trixie.
+
+Entorno utilizado:
+
+- Sistema: Armbian Trixie.
+- Distribución base: Debian 13.
+- Arquitectura: ARM64.
+- SoC: Allwinner H616.
+- Usuario: `sovol`.
+
+La instalación de Armbian constituye la base Linux sobre la que se ejecutan Klipper Mainline y los servicios asociados.
+
+Es importante distinguir el cambio de almacenamiento de la migración de firmware: sustituir el eMMC no actualiza por sí mismo los microcontroladores STM32. Son operaciones independientes que forman parte de la preparación global de la impresora.
+
+### Motivos de la ampliación
+
+El almacenamiento original de 8 GB resulta limitado cuando se trabaja con repositorios de código fuente, herramientas de compilación, entornos virtuales de Python, registros y copias de seguridad.
+
+La ampliación a 32 GB proporciona más espacio para:
+
+- Código fuente de Klipper.
+- Código fuente de Katapult.
+- Entornos virtuales Python.
+- Herramientas de compilación ARM.
+- Firmware compilado.
+- Configuraciones y macros.
+- Registros de Klipper y Moonraker.
+- Copias de seguridad.
+- Archivos de mantenimiento y actualización.
+
+### Resultado
+
+El cambio de eMMC se completó satisfactoriamente.
+
+La Sovol Zero arrancó desde el módulo YXSC de 32 GB con Armbian instalado, mientras que el módulo Samsung original de 8 GB quedó conservado como respaldo físico.
+
+A partir de este punto, los trabajos de preparación y migración a Klipper Mainline se realizaron sobre el nuevo almacenamiento.
 
 Se preparó el entorno de Klipper Mainline y Katapult.
 
