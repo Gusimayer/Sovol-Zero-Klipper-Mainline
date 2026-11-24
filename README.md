@@ -32,7 +32,7 @@ Documentación de una Sovol Zero migrada desde el entorno OEM de Sovol a Klipper
 
 ### Guía general
 
-[Manual de actualización de Klipper Mainline en Sovol Zero](Manual%20de%20actualizaci%C3%B3n%20de%20Klipper%20Mainline%20en%20Sovol%20Zero.md)
+[Manual de actualización de Klipper Mainline en Sovol Zero](Manual%20de%20actualizaci%C3%B3n%20de%20Klipper%20Mainline%20en%20Sovol%20Zero.odt)
 
 ## Actualización de Klipper
 
