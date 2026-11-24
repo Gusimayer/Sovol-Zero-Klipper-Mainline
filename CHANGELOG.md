@@ -12,8 +12,7 @@
 - Añadidos nombres, hashes y parámetros conocidos de los binarios F103.
 - Se distingue el volcado SWD acreditado de la secuencia final de escritura, cuya salida completa no aparece en el fragmento de consola recuperado.
 
-## [2026-11-24] — Actualización automática de MCU Mainline
-
+## 2026-11-24 — Actualización automática de MCU Mainline
 ### Añadido
 - Script `scripts/update_mcus.sh` para actualizar automáticamente los MCU HOST H743 y TOOLHEAD F103.
 - Procedimiento de instalación y ejecución del actualizador.
