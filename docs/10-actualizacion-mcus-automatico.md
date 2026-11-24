@@ -5,7 +5,7 @@ Este procedimiento actualiza una instalación **ya funcional de Klipper Mainline
 La actualización se divide en dos fases:
 
 1. **Mainsail / Update Manager:** actualiza Klipper en el HOST y los componentes seleccionados (Moonraker, Mainsail, Crowsnest, etc.).
-2. **`update_mcus.sh`:** compila y programa los firmwares de los dos MCU para que HOST y TOOLHEAD queden en la misma versión de Klipper.
+2. **`update_mcus.sh`:** compila y programa el MCU seleccionado. Para una actualización completa se actualizan ambos; también permite actualizar HOST o TOOLHEAD por separado.
 
 > **Estado de validación:** el ciclo completo se ejecutó correctamente en una Sovol Zero el 24-11-2026, actualizando desde `v0.13.0-827-g29d4ec2d` a `v0.14.0-0-gc9559fa0`. Se actualizaron primero el F103 por CAN y después el H743 mediante Katapult USB. El script verificó en el registro de arranque actual que ambos MCU cargaron la misma versión.
 >
@@ -31,7 +31,7 @@ El script espera estos archivos dentro de `~/klipper`:
 - `klipper-f103-update.config` — `stm32f103xe`, aplicación en `0x8002000`.
 - `klipper-h743-update.config` — `stm32h743xx`, aplicación en `0x8020000`.
 
-El script comprueba sus SHA256 antes de continuar. No sustituyas estos perfiles por otros sin revisar MCU, reloj, interfaz y dirección de aplicación.
+El script comprueba sus SHA256 antes de continuar. **Estos dos archivos de perfil no están incluidos en el repositorio**: deben existir previamente en `~/klipper` y corresponder exactamente a los perfiles validados. El repositorio publica el script, no los perfiles binarios/de configuración locales. Si no conservas esos dos archivos, detente: no generes perfiles improvisados ni desactives las comprobaciones SHA256. No sustituyas estos perfiles por otros sin revisar MCU, reloj, interfaz y dirección de aplicación.
 
 ## 2. Antes de actualizar
 
@@ -39,7 +39,7 @@ El script comprueba sus SHA256 antes de continuar. No sustituyas estos perfiles 
 2. Haz una copia de seguridad de la configuración de la impresora y de los archivos necesarios para recuperarla.
 3. Mantén alimentación estable durante todo el proceso. No desconectes alimentación ni USB durante el flasheo.
 4. Comprueba que tienes acceso SSH y que conoces la contraseña de `sudo`.
-5. Comprueba que el script, los dos perfiles y Katapult están instalados en las rutas esperadas.
+5. Comprueba que el script, los dos perfiles de compilación y Katapult están instalados en las rutas esperadas. El script descargado por sí solo no basta: los perfiles locales son un requisito obligatorio.
 
 **Importante sobre UUID:** el script incluido contiene los UUID de la unidad usada para validar este procedimiento. Antes de usarlo en otra Sovol Zero, cambia `EXPECTED_HOST_UUID` y `EXPECTED_TOOLHEAD_UUID` por los UUID de esa impresora, obtenidos de las secciones `[mcu]` y `[mcu extruder_mcu]` de su `printer.cfg`. No reutilices los UUID de otra máquina.
 
@@ -89,7 +89,7 @@ Si el comando no devuelve ningún mensaje, la comprobación de sintaxis ha termi
 
 #### Paso 5. Comprobar los perfiles de compilación
 
-El actualizador necesita los dos perfiles de configuración en el mismo directorio:
+El actualizador necesita los dos perfiles de configuración en el mismo directorio. **No se descargan con el comando anterior ni se publican en este repositorio**; deben proceder de la configuración validada que se conserva para esta máquina:
 
 ```text
 ~/klipper/klipper-f103-update.config
@@ -100,7 +100,7 @@ El propio script verifica sus huellas SHA256 antes de continuar. No sustituyas e
 
 > **Importante sobre los UUID:** el script contiene inicialmente los UUID de la Sovol Zero utilizada para validar el procedimiento. Si se utiliza en otra impresora, hay que modificar `EXPECTED_HOST_UUID` y `EXPECTED_TOOLHEAD_UUID` dentro del script, sustituyéndolos por los UUID reales de esa unidad. Se obtienen de las secciones `[mcu]` y `[mcu extruder_mcu]` del archivo `printer.cfg`. No reutilices los UUID de otra impresora.
 
-Una vez completadas estas comprobaciones, el actualizador estará preparado para ejecutarse cuando corresponda, siguiendo el apartado 4 de esta guía.
+Si no tienes ambos perfiles, no continúes con el actualizador hasta recuperarlos de una copia fiable. Una vez completadas estas comprobaciones, el actualizador estará preparado para ejecutarse cuando corresponda, siguiendo el apartado 4 de esta guía.
 
 ## 3. Actualizar HOST y componentes desde Mainsail
 
@@ -131,6 +131,8 @@ El script solicita la contraseña `sudo` y muestra un menú:
 - `5` — Salir.
 - `6` — Recuperar HOST H743 desde Katapult USB usando el binario guardado.
 
+Para una actualización completa de versión, selecciona `3`. Las opciones `1` y `2` son operaciones individuales de mantenimiento o recuperación; en esos casos el script comprueba únicamente el MCU seleccionado y avisa de que el otro no se ha actualizado.
+
 Para actualizar ambos MCU:
 
 1. Selecciona `3`.
@@ -154,7 +156,7 @@ La actualización solo se considera terminada cuando se cumplen todas estas cond
 - En **System Loads** aparecen las versiones esperadas para `mcu` y `extruder_mcu`.
 - CAN está operativo a 1 Mbps.
 
-La comprobación del script se basa en nuevas líneas de `klippy.log` del arranque actual, no únicamente en registros antiguos.
+En las opciones `1` y `2`, el script confirma la carga del MCU actualizado en el arranque actual, pero no afirma que las versiones de ambos MCU coincidan. La comprobación se basa en nuevas líneas de `klippy.log`, no únicamente en registros antiguos.
 
 ## 6. Alcance y limitaciones
 
