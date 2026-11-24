@@ -20,7 +20,7 @@ Documentación y herramientas para migrar una Sovol Zero desde el entorno OEM de
 
 ## Estructura
 
-- `docs/hardware/`: arquitectura e identificación.
+- `docs/hardware/`: arquitectura, pantalla táctil BTT HDMI5 y audio HDMI.
 - `docs/migration/`: migración OEM → Mainline y Katapult/CAN.
 - `docs/configuration/`: configuración y Eddy-Only.
 - `docs/maintenance/`: actualizaciones manuales y automáticas.

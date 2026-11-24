@@ -22,3 +22,7 @@ La tabla frecuencia-altura Eddy y `tap_threshold` se guardan en `SAVE_CONFIG`; n
 6. Conocer el método de recuperación.
 
 Referencia Lexfrei: https://sovol.lexfrei.dev/zero/os/recovery/
+
+---
+
+**Navegación:** [← Índice de recuperación](README.md) | [Siguiente: migración OEM a Mainline](../migration/README.md)

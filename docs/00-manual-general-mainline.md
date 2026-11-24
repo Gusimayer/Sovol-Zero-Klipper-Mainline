@@ -19,6 +19,10 @@ La documentación describe una unidad concreta. No debe copiarse directamente a 
 - La unidad documentada no dispone de célula de carga bajo la cama; la configuración Z sigue la ruta Eddy-Only.
 - El 24-11-2026 HOST y TOOLHEAD quedaron actualizados y verificados en Klipper `v0.14.0-0-gc9559fa0`.
 
+## Periféricos: pantalla y audio
+
+La pantalla táctil BTT HDMI5 y la salida de audio HDMI se documentan en [Pantalla BTT HDMI5](hardware/11-pantalla-btt-hdmi5.md) y [Sistema de audio HDMI](hardware/12-audio-hdmi.md). Estos capítulos distinguen las pruebas confirmadas de los ajustes cuya persistencia todavía debe comprobarse.
+
 ## Fase 1. Identificación y respaldos
 
 Antes de modificar nada:

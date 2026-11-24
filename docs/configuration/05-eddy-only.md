@@ -40,3 +40,7 @@ Referencias:
 - Rex: https://github.com/0dysseusRex/Rex-Sovol-Zero-Mainline/wiki/Eddy-Only-Configuration
 - Lexfrei calibración: https://sovol.lexfrei.dev/zero/application/calibration/
 - Klipper Bed Mesh: https://www.klipper3d.org/Bed_Mesh.html
+
+---
+
+**Navegación:** [← Índice de configuración](README.md) | [Siguiente: actualización manual](../maintenance/06-actualizacion-manual.md)

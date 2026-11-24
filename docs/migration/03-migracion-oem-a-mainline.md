@@ -936,3 +936,7 @@ La configuración resultante utiliza:
 - Eddy TAP y SCAN nativos de Mainline.
 
 La experiencia obtenida permite disponer de un procedimiento reproducible para esta unidad y de una base documentada para futuras actualizaciones y tareas de mantenimiento.
+
+---
+
+**Navegación:** [← Índice de migración](README.md) | [Siguiente: Katapult y CAN](04-katapult-y-can.md)

@@ -780,3 +780,7 @@ La actualización descrita se realizó manualmente el 15-11-2026. Se verificaron
 El actualizador automatizado de Asnajder no se ejecutó de principio a fin durante esta sesión. Por tanto, este capítulo documenta el procedimiento manual, no una ejecución del script automatizado.
 
 Los comandos de consulta incluidos para identificar el entorno y los dispositivos forman parte de una secuencia reproducible de comprobación. Cuando el registro histórico no conserva una transcripción literal de una consulta, no se presenta su salida como si se hubiera capturado durante la sesión original.
+
+---
+
+**Navegación:** [← Índice de mantenimiento](README.md) | [Siguiente: actualización automática](10-actualizacion-automatica.md)

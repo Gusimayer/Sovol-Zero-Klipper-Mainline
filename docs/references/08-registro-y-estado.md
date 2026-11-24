@@ -28,3 +28,7 @@
 
 
 Cada nueva prueba debería registrar fecha, revisión de placa, commits, configuración, comando, salida, hash SHA256 y resultado.
+
+---
+
+**Navegación:** [← Índice de referencias](README.md) | [Siguiente: programación SWD del F103](../recovery/09-programacion-swd-f103.md)

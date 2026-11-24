@@ -20,3 +20,7 @@ Con Klipper activo, el MCU principal aparece como USB `1d50:606f`; Linux expone 
 Esta unidad no tiene célula de carga/strain gauge bajo la cama. El sensor utilizado es Eddy LDC1612 del cabezal. No aplicar procedimientos que requieran una strain gauge.
 
 Referencia: https://sovol.lexfrei.dev/zero/hardware/architecture/
+
+---
+
+**Navegación:** [← Índice de hardware](README.md) | [Siguiente: pantalla BTT HDMI5](11-pantalla-btt-hdmi5.md)

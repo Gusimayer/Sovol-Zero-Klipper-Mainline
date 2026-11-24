@@ -31,3 +31,7 @@ El script detiene Klipper y usa un `trap` que intenta arrancarlo al salir. Una f
 Este repositorio enlaza y analiza el proyecto original, pero no incluye una copia del script. Un repositorio público no concede automáticamente permiso para reutilizar código. Antes de copiar, modificar o redistribuir, comprobar la licencia upstream o pedir permiso al autor. La atribución no sustituye una licencia.
 
 No aplicar automáticamente MIT a código de terceros. Los documentos propios pueden licenciarse por separado cuando se decida la licencia global. Revisar el estado de licencia del upstream en el momento de reutilizar código.
+
+---
+
+**Navegación:** [← Índice de referencias](README.md) | [Siguiente: registro y estado](08-registro-y-estado.md)

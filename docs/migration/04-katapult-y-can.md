@@ -17,3 +17,7 @@ En esta instalación se usó `~/klipper/lib/katapult/flashtool.py`; otras instal
 Al reiniciar el puente, `can0` cae temporalmente. Esperar y comprobar la reenumeración antes de continuar.
 
 Referencia: https://sovol.lexfrei.dev/zero/firmware/
+
+---
+
+**Navegación:** [← Índice de migración](README.md) | [Siguiente: configuración Eddy-Only](../configuration/05-eddy-only.md)

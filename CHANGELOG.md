@@ -43,3 +43,8 @@
 - Conservadas las rutas documentales anteriores mediante páginas de compatibilidad para no romper enlaces existentes.
 - Se mantiene intacto el documento ODT original.
 - Corregidos enlaces internos afectados por el cambio de ubicación.
+
+## 2026-11-24 — Pantalla BTT HDMI5, audio HDMI y navegación
+- Añadidos capítulos de pantalla táctil BTT HDMI5 y audio HDMI, diferenciando resultados confirmados de persistencia pendiente.
+- Incorporada navegación al final de los capítulos: regreso al índice de categoría y enlace al siguiente procedimiento.
+- Actualizados los índices de hardware y documentación general y el manual de entrada.

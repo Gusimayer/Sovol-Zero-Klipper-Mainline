@@ -183,3 +183,7 @@ Actualización realizada en esta unidad:
 ---
 
 **Aviso:** la programación de firmware implica riesgo de dejar un MCU inaccesible. Comprueba siempre la revisión de hardware, el perfil, el offset y los UUID de tu propia impresora. Procede bajo tu responsabilidad.
+
+---
+
+**Navegación:** [← Índice de mantenimiento](README.md) | [Siguiente: backups y recuperación](../recovery/02-backups-y-recuperacion.md)

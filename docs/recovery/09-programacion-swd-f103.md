@@ -141,3 +141,7 @@ No tomar los intentos fallidos como comandos válidos de programación.
 Una vez instalado Katapult Mainline CAN, el F103 aparece en el bus CAN con un UUID nuevo, distinto del identificador OEM. En esta unidad el UUID actual del cabezal es `e592fd710122`; no copiarlo a otras impresoras.
 
 Para las actualizaciones posteriores de esta máquina se utiliza Katapult por CAN. La actualización del 15-11-2026 está documentada en `06-actualizacion-mcus-manual.md` y no requiere repetir este procedimiento SWD.
+
+---
+
+**Navegación:** [← Índice de recuperación](README.md) | [Siguiente: actualización automática](../maintenance/10-actualizacion-automatica.md)

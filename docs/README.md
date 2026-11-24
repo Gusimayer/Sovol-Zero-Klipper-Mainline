@@ -1,7 +1,7 @@
 # Documentación
 
 - [Manual general](00-manual-general-mainline.md)
-- [Hardware](hardware/README.md)
+- [Hardware, pantalla y audio](hardware/README.md)
 - [Migración OEM → Mainline](migration/README.md)
 - [Configuración](configuration/README.md)
 - [Mantenimiento](maintenance/README.md)
