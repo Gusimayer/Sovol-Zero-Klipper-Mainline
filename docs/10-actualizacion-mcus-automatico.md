@@ -7,9 +7,9 @@ La actualización se divide en dos fases:
 1. **Mainsail / Update Manager:** actualiza Klipper en el HOST y los componentes seleccionados (Moonraker, Mainsail, Crowsnest, etc.).
 2. **`update_mcus.sh`:** compila y programa el MCU seleccionado. Para una actualización completa se actualizan ambos; también permite actualizar HOST o TOOLHEAD por separado.
 
-> **Estado de validación:** el ciclo completo se ejecutó correctamente en una Sovol Zero el 24-11-2026, actualizando desde `v0.13.0-827-g29d4ec2d` a `v0.14.0-0-gc9559fa0`. Se actualizaron primero el F103 por CAN y después el H743 mediante Katapult USB. El script verificó en el registro de arranque actual que ambos MCU cargaron la misma versión.
+> **Estado de validación: PROBADO Y FUNCIONANDO.** El procedimiento automático completo (actualización de software desde Mainsail y actualización de ambos MCU con la opción `3` del script) se ejecutó satisfactoriamente en esta Sovol Zero el 24-11-2026, pasando de `v0.13.0-827-g29d4ec2d` a `v0.14.0-0-gc9559fa0`. Se programó primero el F103 por CAN y después el H743 mediante Katapult USB. El script verificó en el registro del arranque actual que ambos MCU cargaron la misma versión; también se recuperaron USB-CAN y `can0` y Klipper volvió a estar operativo.
 >
-> Esta validación corresponde a la unidad y configuración descritas aquí. No garantiza compatibilidad con otras revisiones de placa, UUID, offsets o configuraciones.
+> **Esta es una prueba real completada, no un procedimiento pendiente de validar.** La evidencia corresponde a la unidad y configuración descritas aquí; no garantiza compatibilidad con otras revisiones de placa, UUID, offsets o configuraciones. Las opciones individuales `1` (HOST) y `2` (TOOLHEAD) existen en el menú, pero no formaron parte de la prueba completa documentada.
 
 ## 1. Hardware y configuración validados
 
@@ -131,7 +131,7 @@ El script solicita la contraseña `sudo` y muestra un menú:
 - `5` — Salir.
 - `6` — Recuperar HOST H743 desde Katapult USB usando el binario guardado.
 
-Para una actualización completa de versión, selecciona `3`. Las opciones `1` y `2` son operaciones individuales de mantenimiento o recuperación; en esos casos el script comprueba únicamente el MCU seleccionado y avisa de que el otro no se ha actualizado.
+Para repetir el procedimiento completo que ya hemos probado satisfactoriamente, selecciona `3`. Las opciones `1` y `2` permiten solicitar la actualización individual de HOST o TOOLHEAD; son rutas separadas y no forman parte de la validación completa registrada el 24-11-2026.
 
 Para actualizar ambos MCU:
 
@@ -149,14 +149,14 @@ Si una comprobación falla, no repitas el flasheo a ciegas. Lee el mensaje, cons
 
 ## 5. Verificación final
 
-La actualización solo se considera terminada cuando se cumplen todas estas condiciones:
+En la ruta completa probada (opción `3`), la actualización solo se considera terminada cuando se cumplen todas estas condiciones:
 
 - El script informa que ambos MCU han cargado la misma versión.
 - Mainsail muestra `READY`.
 - En **System Loads** aparecen las versiones esperadas para `mcu` y `extruder_mcu`.
 - CAN está operativo a 1 Mbps.
 
-En las opciones `1` y `2`, el script confirma la carga del MCU actualizado en el arranque actual, pero no afirma que las versiones de ambos MCU coincidan. La comprobación se basa en nuevas líneas de `klippy.log`, no únicamente en registros antiguos.
+Las opciones individuales `1` y `2` tienen una verificación específica del MCU seleccionado, pero no deben confundirse con el ciclo completo que se ha probado. La comprobación de arranque utiliza nuevas líneas de `klippy.log`, no únicamente registros antiguos.
 
 ## 6. Alcance y limitaciones
 
@@ -178,7 +178,7 @@ Actualización realizada en esta unidad:
 | MCU principal H743 | `v0.13.0-827-g29d4ec2d` | `v0.14.0-0-gc9559fa0` |
 | MCU cabezal F103 | `v0.13.0-827-g29d4ec2d` | `v0.14.0-0-gc9559fa0` |
 
-Resultado: compilación de ambos perfiles correcta, programación y verificación de escritura completadas, USB-CAN y CAN recuperados, Klipper arrancado y ambos MCU cargados con la misma versión.
+**Resultado: correcto y satisfactorio.** La compilación de ambos perfiles terminó correctamente; la programación y verificación de escritura se completaron; USB-CAN y CAN se recuperaron; Klipper arrancó y Mainsail volvió a mostrar la impresora operativa, con ambos MCU cargados en la misma versión. Este ciclo completo es el procedimiento automático validado del proyecto.
 
 ---
 
