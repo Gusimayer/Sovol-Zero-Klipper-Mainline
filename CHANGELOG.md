@@ -29,3 +29,9 @@
 ### Documentación
 - Se incorpora el procedimiento automático Mainline → Mainline.
 - Se conserva el procedimiento manual como referencia técnica.
+
+## 2026-11-24 — Revisión documental y del actualizador
+- Añadido un manual general en Markdown como punto de entrada a los procedimientos técnicos.
+- README reorganizado para dirigir al manual general y distinguirlo del ODT original conservado.
+- Documentado explícitamente que los dos perfiles de compilación requeridos por el actualizador no se distribuyen en el repositorio.
+- Corregida la verificación del script para que las actualizaciones individuales comprueben el MCU seleccionado, sin exigir que el MCU no actualizado comparta versión.
