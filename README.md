@@ -12,6 +12,10 @@ Documentación de una Sovol Zero migrada desde el entorno OEM de Sovol a Klipper
 - HOST y TOOLHEAD actualizados y verificados en `v0.14.0-0-gc9559fa0` el 24-11-2026.
 - Eddy LDC1612 en el cabezal. Esta unidad no tiene célula de carga bajo la cama.
 
+## Manual general
+
+[00 — Manual general de Klipper Mainline en Sovol Zero](docs/00-manual-general-mainline.md) — Punto de entrada recomendado; explica el recorrido completo y enlaza los procedimientos técnicos.
+
 ## Documentación
 
 ### Hardware, instalación y configuración
@@ -30,9 +34,9 @@ Documentación de una Sovol Zero migrada desde el entorno OEM de Sovol a Klipper
 9. [Registro y estado del proyecto](docs/08-registro-y-estado.md)
 10. [Programación SWD del F103](docs/09-programacion-swd-f103.md)
 
-### Guía general
+### Documento original
 
-[Manual de actualización de Klipper Mainline en Sovol Zero](Manual%20de%20actualizaci%C3%B3n%20de%20Klipper%20Mainline%20en%20Sovol%20Zero.odt)
+Se conserva el archivo ODT original como referencia histórica. Para la guía mantenida y enlazada, utiliza el [manual general en Markdown](docs/00-manual-general-mainline.md).
 
 ## Actualización de Klipper
 
@@ -45,7 +49,7 @@ Para instalaciones que ya ejecutan Klipper Mainline y tienen Katapult operativo,
 La actualización se realiza en dos fases:
 
 1. Actualizar los componentes de software desde Mainsail Update Manager.
-2. Ejecutar el script `update_mcus.sh` para compilar y actualizar los dos MCU.
+2. Ejecutar el script `update_mcus.sh` para compilar y actualizar el MCU o los MCU seleccionados. Para una actualización completa, actualizar ambos.
 
 El procedimiento completo, los requisitos y las comprobaciones están documentados en el capítulo de actualización automática Mainline → Mainline.
 
