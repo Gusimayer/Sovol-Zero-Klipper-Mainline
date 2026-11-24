@@ -43,6 +43,65 @@ El script comprueba sus SHA256 antes de continuar. No sustituyas estos perfiles 
 
 **Importante sobre UUID:** el script incluido contiene los UUID de la unidad usada para validar este procedimiento. Antes de usarlo en otra Sovol Zero, cambia `EXPECTED_HOST_UUID` y `EXPECTED_TOOLHEAD_UUID` por los UUID de esa impresora, obtenidos de las secciones `[mcu]` y `[mcu extruder_mcu]` de su `printer.cfg`. No reutilices los UUID de otra máquina.
 
+### 2.1. Descargar y colocar el actualizador de MCU
+
+Antes de comenzar la actualización, es necesario descargar el script `update_mcus.sh` desde el repositorio de GitHub y colocarlo en el directorio de Klipper de la impresora.
+
+**Ubicación obligatoria del archivo:**
+
+```text
+/home/sovol/klipper/update_mcus.sh
+```
+
+#### Paso 1. Conectarse por SSH
+
+Abre una sesión SSH con la Sovol Zero utilizando el usuario habitual.
+
+#### Paso 2. Descargar el script
+
+Ejecuta el siguiente comando:
+
+```bash
+wget -O ~/klipper/update_mcus.sh https://raw.githubusercontent.com/Gusimayer/Sovol-Zero-Klipper-Mainline/main/scripts/update_mcus.sh
+```
+
+El archivo se descargará directamente desde el repositorio y quedará guardado en el directorio `~/klipper`.
+
+#### Paso 3. Comprobar que se ha descargado
+
+Ejecuta:
+
+```bash
+ls -lh ~/klipper/update_mcus.sh
+```
+
+Debe aparecer el archivo `update_mcus.sh` con su tamaño correspondiente.
+
+#### Paso 4. Comprobar la sintaxis del script
+
+Ejecuta:
+
+```bash
+bash -n ~/klipper/update_mcus.sh
+```
+
+Si el comando no devuelve ningún mensaje, la comprobación de sintaxis ha terminado correctamente.
+
+#### Paso 5. Comprobar los perfiles de compilación
+
+El actualizador necesita los dos perfiles de configuración en el mismo directorio:
+
+```text
+~/klipper/klipper-f103-update.config
+~/klipper/klipper-h743-update.config
+```
+
+El propio script verifica sus huellas SHA256 antes de continuar. No sustituyas estos archivos por perfiles diferentes sin revisar sus parámetros.
+
+> **Importante sobre los UUID:** el script contiene inicialmente los UUID de la Sovol Zero utilizada para validar el procedimiento. Si se utiliza en otra impresora, hay que modificar `EXPECTED_HOST_UUID` y `EXPECTED_TOOLHEAD_UUID` dentro del script, sustituyéndolos por los UUID reales de esa unidad. Se obtienen de las secciones `[mcu]` y `[mcu extruder_mcu]` del archivo `printer.cfg`. No reutilices los UUID de otra impresora.
+
+Una vez completadas estas comprobaciones, el actualizador estará preparado para ejecutarse cuando corresponda, siguiendo el apartado 4 de esta guía.
+
 ## 3. Actualizar HOST y componentes desde Mainsail
 
 1. Abre Mainsail.
