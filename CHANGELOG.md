@@ -34,4 +34,5 @@
 - Añadido un manual general en Markdown como punto de entrada a los procedimientos técnicos.
 - README reorganizado para dirigir al manual general y distinguirlo del ODT original conservado.
 - Documentado explícitamente que los dos perfiles de compilación requeridos por el actualizador no se distribuyen en el repositorio.
-- Corregida la verificación del script para que las actualizaciones individuales comprueben el MCU seleccionado, sin exigir que el MCU no actualizado comparta versión.
+- Confirmado y destacado que el ciclo automático completo (Mainsail + opción 3 del script, actualización de ambos MCU) fue probado satisfactoriamente el 24-11-2026; no es una función pendiente de validación.
+- Ajustada la explicación de las opciones individuales 1 y 2: son rutas independientes y no deben confundirse con la prueba completa documentada. La adaptación de su verificación en el script es un cambio nuevo que requiere validación específica antes de considerarse probado.
