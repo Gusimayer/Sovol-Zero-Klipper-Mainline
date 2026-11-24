@@ -65,7 +65,7 @@ Una vez que Klipper Mainline y Katapult funcionan correctamente, las actualizaci
 2. Actualizar el firmware del MCU o de los MCU con el script mantenido en este repositorio.
 3. Verificar la recuperación de USB-CAN/CAN, el arranque de Klipper y el estado `READY` en Mainsail.
 
-El procedimiento automático fue probado en esta unidad el 24-11-2026. El script ofrece actualización individual del HOST, individual del TOOLHEAD o de ambos MCU. Para una actualización de versión completa se recomienda actualizar ambos.
+**El procedimiento automático completo está probado y funcionó correctamente en esta unidad el 24-11-2026**: actualización de software desde Mainsail y programación de ambos MCU con la opción `3` del script. Se verificó que HOST y TOOLHEAD cargaron `v0.14.0-0-gc9559fa0`, y se recuperaron USB-CAN, `can0` y el servicio Klipper. Las opciones individuales HOST y TOOLHEAD existen, pero no forman parte de esa prueba completa.
 
 **Importante:** el script necesita dos perfiles de compilación locales en `~/klipper` (`klipper-f103-update.config` y `klipper-h743-update.config`) con hashes exactos. Esos perfiles no están incluidos en el repositorio. Si no están disponibles en una copia fiable, no ejecutes el script ni desactives las comprobaciones de integridad.
 
