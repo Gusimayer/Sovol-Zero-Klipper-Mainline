@@ -289,6 +289,7 @@ fresh_mcu_lines(){
 }
 
 start_klipper_and_verify_mcus(){
+  local target="$1"
   local log_start_line log_start_inode host_line toolhead_line host_version toolhead_version until
   log_start_line="$(wc -l < "$KLIPPY_LOG")"
   log_start_inode="$(stat -c %i "$KLIPPY_LOG")"
@@ -300,28 +301,53 @@ start_klipper_and_verify_mcus(){
   fi
   sudo systemctl is-active --quiet "$SERVICE" || die "El servicio Klipper no está activo tras el flasheo."
 
-  info "Esperando registros nuevos de ambos MCUs en klippy.log..."
+  info "Esperando registros nuevos de los MCU actualizados en klippy.log..."
   until=$((SECONDS+75))
   while (( SECONDS < until )); do
     local fresh
     fresh="$(fresh_mcu_lines "$log_start_line" "$log_start_inode")"
     host_line="$(grep -E "^Loaded MCU 'mcu' " <<<"$fresh" | tail -1 || true)"
     toolhead_line="$(grep -E "^Loaded MCU 'extruder_mcu' " <<<"$fresh" | tail -1 || true)"
-    if [[ -n "$host_line" && -n "$toolhead_line" ]]; then break; fi
+    case "$target" in
+      host) [[ -n "$host_line" ]] && break ;;
+      toolhead) [[ -n "$toolhead_line" ]] && break ;;
+      both) [[ -n "$host_line" && -n "$toolhead_line" ]] && break ;;
+      *) die "Destino de verificación no válido: $target" ;;
+    esac
     sleep 1
   done
 
-  [[ -n "${host_line:-}" ]] || die "No se encontró una carga nueva del MCU HOST en klippy.log."
-  [[ -n "${toolhead_line:-}" ]] || die "No se encontró una carga nueva del MCU TOOLHEAD en klippy.log."
-  host_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$host_line")"
-  toolhead_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$toolhead_line")"
-  [[ -n "$host_version" && -n "$toolhead_version" ]] || die "No se pudieron extraer las versiones de ambos MCUs."
-  [[ "$host_version" == "$toolhead_version" ]] || die "Las versiones no coinciden: HOST $host_version / TOOLHEAD $toolhead_version."
-  sudo systemctl is-active --quiet "$SERVICE" || die "Klipper dejó de estar activo durante la verificación."
+  case "$target" in
+    host)
+      [[ -n "${host_line:-}" ]] || die "No se encontró una carga nueva del MCU HOST en klippy.log."
+      host_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$host_line")"
+      [[ -n "$host_version" ]] || die "No se pudo extraer la versión del MCU HOST."
+      echo "Verificación del MCU actualizado en el arranque actual:"
+      printf '%s\n' "$host_line"
+      info "HOST ha cargado la versión $host_version. TOOLHEAD no se ha actualizado en esta operación."
+      ;;
+    toolhead)
+      [[ -n "${toolhead_line:-}" ]] || die "No se encontró una carga nueva del MCU TOOLHEAD en klippy.log."
+      toolhead_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$toolhead_line")"
+      [[ -n "$toolhead_version" ]] || die "No se pudo extraer la versión del MCU TOOLHEAD."
+      echo "Verificación del MCU actualizado en el arranque actual:"
+      printf '%s\n' "$toolhead_line"
+      info "TOOLHEAD ha cargado la versión $toolhead_version. HOST no se ha actualizado en esta operación."
+      ;;
+    both)
+      [[ -n "${host_line:-}" ]] || die "No se encontró una carga nueva del MCU HOST en klippy.log."
+      [[ -n "${toolhead_line:-}" ]] || die "No se encontró una carga nueva del MCU TOOLHEAD en klippy.log."
+      host_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$host_line")"
+      toolhead_version="$(sed -n 's/.*(\(v[^ ]*\).*/\1/p' <<<"$toolhead_line")"
+      [[ -n "$host_version" && -n "$toolhead_version" ]] || die "No se pudieron extraer las versiones de ambos MCUs."
+      [[ "$host_version" == "$toolhead_version" ]] || die "Las versiones no coinciden: HOST $host_version / TOOLHEAD $toolhead_version."
+      echo "Verificación de carga de ambos MCUs en el arranque actual:"
+      printf '%s\n' "$host_line" "$toolhead_line"
+      info "Ambos MCUs han cargado la misma versión: $host_version."
+      ;;
+  esac
 
-  echo "Verificación de carga MCU en el arranque actual:"
-  printf '%s\n' "$host_line" "$toolhead_line"
-  info "Ambos MCUs han cargado la misma versión: $host_version."
+  sudo systemctl is-active --quiet "$SERVICE" || die "Klipper dejó de estar activo durante la verificación."
   warn "Confirma también en Mainsail que Klipper muestra READY antes de imprimir."
 }
 
@@ -334,7 +360,7 @@ verify_after_update(){
   else
     check_can_ready || die "can0 no está operativo tras actualizar TOOLHEAD. Klipper permanecerá detenido."
   fi
-  start_klipper_and_verify_mcus
+  start_klipper_and_verify_mcus "$1"
 }
 
 recover_host(){
@@ -374,8 +400,8 @@ recover_host(){
 
   wait_for_klipper_usbcan || die "No se detectó USB-CAN/can0 operativo después de programar. Klipper permanecerá detenido."
   HOST_USB_CAN_CONFIRMED=1
-  start_klipper_and_verify_mcus
-  info "Recuperación verificada a nivel de conexión y versión de ambos MCUs."
+  start_klipper_and_verify_mcus host
+  info "Recuperación HOST verificada a nivel de conexión y versión."
 }
 
 run_update(){
