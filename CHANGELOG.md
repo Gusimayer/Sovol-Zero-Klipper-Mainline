@@ -36,3 +36,10 @@
 - Documentado explícitamente que los dos perfiles de compilación requeridos por el actualizador no se distribuyen en el repositorio.
 - Confirmado y destacado que el ciclo automático completo (Mainsail + opción 3 del script, actualización de ambos MCU) fue probado satisfactoriamente el 24-11-2026; no es una función pendiente de validación.
 - Ajustada la explicación de las opciones individuales 1 y 2: son rutas independientes y no deben confundirse con la prueba completa documentada. La adaptación de su verificación en el script es un cambio nuevo que requiere validación específica antes de considerarse probado.
+
+## 2026-11-24 — Organización de la documentación
+- Reorganizados los capítulos por ciclo de vida: hardware, migración, configuración, mantenimiento, recuperación y referencias.
+- Añadidos índices por categoría y un índice general actualizado.
+- Conservadas las rutas documentales anteriores mediante páginas de compatibilidad para no romper enlaces existentes.
+- Se mantiene intacto el documento ODT original.
+- Corregidos enlaces internos afectados por el cambio de ubicación.

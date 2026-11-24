@@ -31,7 +31,7 @@ Antes de modificar nada:
 
 Los UUID OEM no deben reutilizarse en Mainline. Los UUID reales de la unidad documentada y otros datos de diagnóstico aparecen en los capítulos técnicos; no son valores universales.
 
-**Documento:** [Backups y recuperación](02-backup-recuperacion.md).
+**Documento:** [Backups y recuperación](recovery/02-backups-y-recuperacion.md).
 
 ## Fase 2. Migración OEM a Klipper Mainline
 
@@ -39,7 +39,7 @@ La migración inicial es distinta de una actualización normal. Incluye preparar
 
 No ejecutes una guía de bootstrap o SWD sobre una máquina que ya tiene Katapult Mainline operativo, salvo que estés realizando una recuperación documentada y hayas confirmado el estado del MCU.
 
-**Documento principal:** [Migración OEM → Mainline](03-migracion-oem-a-mainline.md).
+**Documento principal:** [Migración OEM → Mainline](migration/03-migracion-oem-a-mainline.md).
 
 ## Fase 3. Katapult y comunicación CAN
 
@@ -47,7 +47,7 @@ En la arquitectura documentada, el MCU principal es simultáneamente el controla
 
 Comprueba el estado de CAN y el modo de arranque antes de cualquier programación. No presupongas que un puerto serie, UUID o VID:PID será idéntico en otra revisión.
 
-**Documento:** [Katapult y CAN](04-katapult-can.md).
+**Documento:** [Katapult y CAN](migration/04-katapult-y-can.md).
 
 ## Fase 4. Configuración Eddy-Only
 
@@ -55,7 +55,7 @@ La máquina documentada no tiene célula de carga bajo la cama. La configuració
 
 No mezcles macros ni procedimientos que presupongan una strain gauge. Conserva los datos de calibración guardados por Klipper y sigue el procedimiento específico del proyecto.
 
-**Documento:** [Configuración Eddy-Only](05-configuracion-eddy-only.md).
+**Documento:** [Configuración Eddy-Only](configuration/05-eddy-only.md).
 
 ## Fase 5. Actualizaciones posteriores Mainline → Mainline
 
@@ -69,8 +69,8 @@ Una vez que Klipper Mainline y Katapult funcionan correctamente, las actualizaci
 
 **Importante:** el script necesita dos perfiles de compilación locales en `~/klipper` (`klipper-f103-update.config` y `klipper-h743-update.config`) con hashes exactos. Esos perfiles no están incluidos en el repositorio. Si no están disponibles en una copia fiable, no ejecutes el script ni desactives las comprobaciones de integridad.
 
-- [Actualización automática MCU Mainline → Mainline](10-actualizacion-mcus-automatico.md)
-- [Actualización manual MCU Mainline → Mainline](06-actualizacion-mcus-manual.md)
+- [Actualización automática MCU Mainline → Mainline](maintenance/10-actualizacion-automatica.md)
+- [Actualización manual MCU Mainline → Mainline](maintenance/06-actualizacion-manual.md)
 - [Script de actualización](../scripts/update_mcus.sh)
 
 ## Fase 6. Procedimientos de recuperación y diagnóstico
@@ -80,7 +80,7 @@ Si un MCU deja de responder, evita repetir el flasheo a ciegas. Determina primer
 El procedimiento SWD del F103 contiene la evidencia y los límites de la sesión documentada. No debe confundirse un backup SWD acreditado con una secuencia de escritura cuya salida de consola no se haya conservado.
 
 - [Backups y recuperación](02-backup-recuperacion.md)
-- [Programación SWD del F103](09-programacion-swd-f103.md)
+- [Programación SWD del F103](recovery/09-programacion-swd-f103.md)
 
 ## Criterios para considerar la máquina operativa
 
@@ -101,13 +101,9 @@ Después de una migración, actualización o recuperación:
 
 ## Índice de documentación técnica
 
-- [01 — Hardware y arquitectura](01-hardware-arquitectura.md)
-- [02 — Backups y recuperación](02-backup-recuperacion.md)
-- [03 — Migración OEM → Mainline](03-migracion-oem-a-mainline.md)
-- [04 — Katapult y CAN](04-katapult-can.md)
-- [05 — Configuración Eddy-Only](05-configuracion-eddy-only.md)
-- [06 — Actualización manual de MCU](06-actualizacion-mcus-manual.md)
-- [07 — Análisis del actualizador Asnajder](07-analisis-actualizador-asnajder.md)
-- [08 — Registro y estado del proyecto](08-registro-y-estado.md)
-- [09 — Programación SWD del F103](09-programacion-swd-f103.md)
-- [10 — Actualización automática de MCU](10-actualizacion-mcus-automatico.md)
+- [Hardware y arquitectura](hardware/README.md)
+- [Migración OEM → Mainline y Katapult/CAN](migration/README.md)
+- [Configuración Eddy-Only](configuration/README.md)
+- [Mantenimiento y actualizaciones](maintenance/README.md)
+- [Backups, recuperación y programación SWD](recovery/README.md)
+- [Referencias y registro del proyecto](references/README.md)

@@ -14,7 +14,7 @@ La máquina ejecutaba Klipper OEM de Sovol sobre H616, MCU principal STM32H750 (
 El MCU físico se identificó como H750, pero Mainline se compiló con target `stm32h743xx`, 400 MHz y aplicación en `0x8020000`. No repetir este paso en una máquina que ya tenga Katapult Mainline operativo.
 
 ## TOOLHEAD F103
-La sesión SWD está documentada con la conexión del ST-Link V2, identificación del STM32F103, lectura completa de la flash original y verificación del backup, binarios preparados y parámetros de compilación. Véase [Programación SWD del F103](09-programacion-swd-f103.md).
+La sesión SWD está documentada con la conexión del ST-Link V2, identificación del STM32F103, lectura completa de la flash original y verificación del backup, binarios preparados y parámetros de compilación. Véase [Programación SWD del F103](../recovery/09-programacion-swd-f103.md).
 
 El F103 terminó respondiendo por CAN con un UUID Mainline real, distinto del UUID OEM. El registro recuperado acredita el volcado SWD y el estado final Mainline; no conserva la salida final completa de OpenOCD que demuestre cada operación de borrado/escritura/verificación. Por rigor, esa salida no se reconstruye ni se presenta como transcripción ejecutada.
 
